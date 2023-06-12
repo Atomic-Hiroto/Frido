@@ -25,8 +25,8 @@ function Player(props) {
   const [isSeeking,setIsSeeking] = useState(false);
   const [queue, setQueue] = useState([
     {
-      title: "REMEMBER - Sawano",
-      url: "https://www.youtube.com/watch?v=d29o-GdlW4g&pp=ygUPc2F3YW5vIHJlbWVtYmVy",
+      title: "Cupid - FIFTY FIFTY (Twin Ver)",
+      url: "https://www.youtube.com/watch?v=IshXvhbfy8I&pp=ygURY3VwaWQgZmlmdHkgZmlmdHk%3D",
     },
   ]);
   const [input, setInput] = useState("");
@@ -43,16 +43,21 @@ function Player(props) {
     const newque = queue.splice(idx+1,1)
     setQueue(newque)
   }
+  const playIndex = (idx) =>{
+    setCurrSong(idx)
+  }
 
   return (
     <>
     <Flex borderRadius={10}
-      background={"blackAlpha.400"} m={10} mt={0} p={10} alignItems={"center"} flexDirection={"column"} >
+      background={"blackAlpha.400"} maxHeight={230} m={10} mt={0} p={5} alignItems={"center"} flexDirection={"column"} >
         <Heading color={"white"} fontSize={20} mb={5} >Queue</Heading>
-        <Flex flexDirection={"column"} w={"80%"}  >
+        <Flex flexDirection={"column"} w={"80%"} overflowY={"scroll"} >
         {
             queue.map((elem,idx)=>{
-                return <Flex alignItems={"center"} color={"white"} _hover={{backgroundColor:"blackAlpha.300"}} justifyContent={"space-between"} >
+                return <Flex alignItems={"center"} color={"white"} onClick={()=>{
+                  playIndex(idx)
+                }} cursor={"pointer"} _hover={{backgroundColor:"blackAlpha.300"}} justifyContent={"space-between"} >
                     <Flex alignItems={"center"} gap={1} >
                     <p>{idx+1}.</p>
                     <h4>{elem.title}</h4>
